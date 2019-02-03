@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Train HW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>Train Schedules</h1>
+    </div>
+    <div class="train-list">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped" id="train-table">
+                    <thead>
+                        <tr>
+                            <th id="trains" scope="col">Train Name</th>
+                            <th id="destination" scope="col">Destination</th>
+                            <th id="frequency" scope="col">Frequency (min)</th>
+                            <th id="nextArrival" scope="col">Next Arrival</th>
+                            <th id="minutesAway" scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                </table>
+
+
+                <div>
+                    <!-- Add Train  -->
+                    <div class="card mb-4">
+                        <div class="card-header">Add Train</div>
+                        <div class="card-body">
+
+                            <form id="add-train-form">
+
+                                <input type="text" name="trainName" placeholder="Enter Train Name">
+
+                        </div>
+                        <div>
+
+                            <input type="text" name="destination" placeholder="Enter Destination">
+                        </div>
+                        <div>
+
+                            <input type="time" name="firstTrainTime" placeholder="First Train Time(HH:mm)">
+                        </div>
+                        <div>
+
+                            <input type="number" name="frequency" placeholder="frequency (min)">
+                        </div>
+                        <button type="submit" id="submit-train" class="btn btn-primary">Add Train</button>
+                        </form>
+                        </tr>
+                        </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <form id="add-train-form"></form>
+
+
+
+
+        </div>
+        <script>
+            //initialize database
+            var config = {
+                apiKey: "AIzaSyBCrbNN6Mnx5WmSAjNwaW0xCjNcCps04s8",
+                authDomain: "fir-firstbase-9efc7.firebaseapp.com",
+                databaseURL: "https://fir-firstbase-9efc7.firebaseio.com",
+                projectId: "fir-firstbase-9efc7",
+                storageBucket: "fir-firstbase-9efc7.appspot.com",
+                messagingSenderId: "682955809867"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+        </script>
+        <script src="app.js"></script>
+</body>
+
+</html>
