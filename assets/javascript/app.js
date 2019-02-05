@@ -83,7 +83,7 @@ $(document).ready(function () {
         console.log("the diff in minutes is: " + diffMinutes);
 
         //minutes away
-        var tMinutesTillTrain = diffMinutes / frequency;
+        var tMinutesTillTrain = diffMinutes % frequency;
         console.log("minutes till train: " + tMinutesTillTrain);
 
         //next train
