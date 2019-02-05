@@ -15,6 +15,7 @@ $(document).ready(function () {
     //create on click button for adding trains
     $("#submit-train").on("click", function (event) {
         event.preventDefault();
+        
 
         var trainName = $("#trainName").val();
         var destination = $("#town").val();
