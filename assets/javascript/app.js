@@ -51,8 +51,8 @@ $(document).ready(function () {
     database.ref().on("child_added", function (childSnapshot) {
         console.log(childSnapshot.val());
         //store all in a variable
-        var trainName = childSnapshot.val().trainName;
-        var destination = childSnapshot.val().destination;
+        var trainName = childSnapshot.val().newTrainName;
+        var destination = childSnapshot.val().newDestination;
         var firstTrainTime = childSnapshot.val().firstTime;
         var frequency = childSnapshot.val().frequency;
         //train info
@@ -62,24 +62,28 @@ $(document).ready(function () {
         console.log(frequency);
         ////calc next arrival
 
-        var trainFreq;
+        
         var firstTrain = 0;
-        var firstTrainTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+        var firstTrainTimeConverted = moment(firstTrainTime, "HH:mm");
         console.log(firstTrainTimeConverted);
 
         //current time
         var currentTime = moment();
         console.log("current time: " + moment(currentTime).format("HH:mm"));
 
-        //difference between times
-        var timeDiff = moment().diff(moment(firstTrainTimeConverted), "minutes");
-        console.log("difference in time: " + timeDiff);
+
+        //gotta try new things
+        
+        
+        //difference between first left and now
+        var timeDiff = moment.utc(moment(currentTime,"HH:mm").diff(moment(firstTrainTimeConverted, "HH:mm"))).format("HH:mm");
+        console.log("difference in time: " + timeDiff, "mm");
         //time apart (remainder)
-        var timeRemainder = timeDiff % trainFreq;
-        console.log(timeRemainder);
+        var diffMinutes =moment.duration(currentTime.diff(firstTrainTimeConverted));
+        console.log("the diff in minutes is: " + diffMinutes);
 
         //minutes away
-        var tMinutesTillTrain = trainFreq - timeRemainder;
+        var tMinutesTillTrain = diffMinutes / frequency;
         console.log("minutes till train: " + tMinutesTillTrain);
 
         //next train
@@ -91,11 +95,7 @@ $(document).ready(function () {
             "</td><td>" + moment(nextTrain).format("HH:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
 
-        //nextArrival.textContent = doc.data().[take first train time and add 60 until now]
-        /////minutesAway.textContent = nextArrival-now in minutes
-
-        //calculate the the next arrival using math
-        //calc the minutes away
+      
     })
 })
 
