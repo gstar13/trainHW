@@ -1,21 +1,21 @@
 $(document).ready(function () {
-     //initialize database
-     var config = {
+    //initialize database
+    var config = {
         apiKey: "AIzaSyCQDKHSQcNkLim5iyflvsnqag5lIFrUh30",
         authDomain: "gstar-ucla-example.firebaseapp.com",
         databaseURL: "https://gstar-ucla-example.firebaseio.com",
         projectId: "gstar-ucla-example",
         storageBucket: "gstar-ucla-example.appspot.com",
         messagingSenderId: "38165799591"
-      };
-                firebase.initializeApp(config);
-                var database = firebase.database();
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
 
     // render trains ///first train pushed back 1 year so it alwas comes before the current time
     //create on click button for adding trains
     $("#submit-train").on("click", function (event) {
         event.preventDefault();
-        
+
 
         var trainName = $("#trainName").val();
         var destination = $("#town").val();
@@ -63,8 +63,8 @@ $(document).ready(function () {
         console.log(frequency);
         ////calc next arrival
 
-        
-        var firstTrain = 0;
+
+
         var firstTrainTimeConverted = moment(firstTrainTime, "HH:mm");
         console.log(firstTrainTimeConverted);
 
@@ -72,23 +72,24 @@ $(document).ready(function () {
         var currentTime = moment();
         console.log("current time: " + moment(currentTime).format("HH:mm"));
 
-
-        //gotta try new things
-        
-        
-        //difference between first left and now
-        var timeDiff = moment.utc(moment(currentTime,"HH:mm").diff(moment(firstTrainTimeConverted, "HH:mm"))).format("HH:mm");
+        //difference between first left and now---
+        var timeDiff = moment.utc(moment(currentTime, "HH:mm").diff(moment(firstTrainTimeConverted, "HH:mm"))).format("HH:mm");
         console.log("difference in time: " + timeDiff, "mm");
-        //time apart (remainder)
-        var diffMinutes =moment.duration(currentTime.diff(firstTrainTimeConverted));
-        console.log("the diff in minutes is: " + diffMinutes);
 
+        //correct
+        var diffMinutes = moment().diff(moment(firstTrainTimeConverted), "minutes");
+        console.log(diffMinutes);
+
+        //tremainder
+        tRemainder = diffMinutes % frequency;
         //minutes away
-        var tMinutesTillTrain = diffMinutes % frequency;
-        console.log("minutes till train: " + tMinutesTillTrain);
+        var tMinutesTillTrain = frequency - tRemainder;
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+
+        console.log("how many times the train came " + tMinutesTillTrain);
 
         //next train
-        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+        /// var nextTrain = firstTrainTimeConverted +  (tempTime*frequency); 
         console.log("arrival time: " + moment(nextTrain).format("HH:mm"));
 
         //add each train time to the table
@@ -96,7 +97,7 @@ $(document).ready(function () {
             "</td><td>" + moment(nextTrain).format("HH:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
 
-      
+
     })
 })
 

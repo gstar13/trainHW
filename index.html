@@ -41,20 +41,24 @@
                     <!-- Add Train  -->
                     <div class="card mb-4">
                         <div class="card-header">Add New Train Below</div>
+
                         <div class="card-body">
-                    <form id="add-train-form">
+                        <form id="add-train-form">
                             <input type="text" name="trainName" id="trainName" placeholder="Enter Train Name">
                         </div>
-                        <div>
+                        <div class="card-body">
                             <input type="text" name="destination" id="town" placeholder="Enter Destination">
                         </div>
-                        <div>
+                        <div class="card-body">
                             <input type="time" name="firstTrainTime" id="firstTrainTime" placeholder="First Train Time(HH:mm)">
                         </div>
-                        <div>
+                        <div class="card-body">
                             <input type="number" name="frequency" id="minutes" placeholder="frequency (min)">
                         </div>
-                        <button type="submit" id="submit-train" class="btn btn-primary">Add Train</button>
+
+                        <div class="card-body">
+                        <button  type="submit" id="submit-train" class="btn btn-primary">Add Train</button>
+                        </div>
                     </form>
                         </tr>
                         </tbody>

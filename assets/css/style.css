@@ -19,7 +19,7 @@ h1{
 .card-header{
     background: #6faae2;
 }
-#submit-train{
+#submit-train, #clear {
     border: 0;
     background: #6faae2;
     border-radius: 10px;
