@@ -40,7 +40,7 @@ $(document).ready(function () {
         console.log(newTrain.firstTime);
         console.log(newTrain.frequency);
 
-        alert("new train added");
+       
         //clear all of the text boxes
         $("#trainName").val("");
         $("#town").val("");
